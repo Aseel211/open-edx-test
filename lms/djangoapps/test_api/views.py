@@ -25,9 +25,7 @@ class ClientGreetingAPI(APIView):
         LOGGER.info('the user ' + str(request.user) + ' submit greeting ' + greeting)
         UserGreeting.objects.create(user=request.user, greeting_word=greeting)
         if greeting == 'hellow':
-            print('yyyyyyyyyyyyyyyyyyyyyyyyyy')
-            print('yyyyyyyyyyyyyyyyyyyyyyyyyy')
-            user = User.objects.get(username="aseel2")
+            user = User.objects.get(id=request.user.id)
             jwt = create_jwt_for_user(user)
             client = requests.Session()
             client.auth = SuppliedJwtAuth(jwt)
@@ -36,14 +34,8 @@ class ClientGreetingAPI(APIView):
             return Response({
                 "message": 'done',
             })
-        # client_no = request.data['client']
-        print(request.data)
-        print(request.user)
-        print('aseel')
-        print('aseel')
-        print('aseel')
-        print('aseel')
-        print('aseel')
+        
+
         return Response({
                 "message": 'done',
 
